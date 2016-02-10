@@ -61,10 +61,12 @@ export default class Board extends Component {
          key={i}
          track={t}
          trackName={this.props.trackNames[t]}
+         badges={this.props.badges[t]}
          pair={this.props.assignments[t] || []}
          onCardDropped={this.props.onCardDropped}
          onCardHovered={this.props.onCardHovered}
          onTrackNameChanged={this.props.onTrackNameChanged}
+         onBadgeAssigned={this.props.onBadgeAssigned}
          alternate={ i % 2 != 0 }
        >
       </Row>

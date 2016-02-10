@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { DropTarget } from 'react-dnd';
+import Radium from 'radium';
 
 import Pair from './Pair';
-import Radium from 'radium';
+import Badge from './Badge';
 
 const rowStyle = {
   base: {
@@ -33,22 +35,26 @@ const inputStyle = {
   border: 0,
   paddingLeft: 4,
   background: "none",
-  //borderBottom: "1px solid #999",
 }
 
 class Row extends Component {
   render() {
-    return (
+    const badges = (this.props.badges|| []).map(badge => (
+      <Badge name={badge}/>
+    ))
+
+    return this.props.connectDropTarget(
       <div style={[
         rowStyle.base,
         this.props.alternate && rowStyle.alternate,
       ]}>
         <div style={leftStyle}>
-        <Pair
-          members={this.props.pair}
-          onCardDropped={ (card, pos) => this.props.onCardDropped( card, this.props.track, pos ) }
-          onCardHovered={ (card, pos) => this.props.onCardHovered( card, this.props.track, pos ) }
-        />
+          <Pair
+            members={this.props.pair}
+            onCardDropped={ (card, pos) => this.props.onCardDropped( card, this.props.track, pos ) }
+            onCardHovered={ (card, pos) => this.props.onCardHovered( card, this.props.track, pos ) }
+          />
+          {badges}
         </div>
         <div style={rightStyle}>
           <input
@@ -63,4 +69,14 @@ class Row extends Component {
   }
 }
 
-export default Radium(Row)
+export default DropTarget(["BADGE"], {
+  drop(props, monitor) {
+    props.onBadgeAssigned(props.track, monitor.getItem().name)
+  }
+}, (connect, monitor) => {
+  return {
+    "connectDropTarget": connect.dropTarget(),
+    "hovered": monitor.isOver(),
+  }
+})(Radium(Row));
+

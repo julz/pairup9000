@@ -72,6 +72,7 @@
     "react": "^0.14.3",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.2",
+    "react-dnd-touch-backend": "^0.2.4",
     "react-dom": "^0.14.3",
     "redis": "^2.4.2",
     "socket.io": "^1.4.5",

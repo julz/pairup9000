@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
-import { DragDropContext, DropTarget } from 'react-dnd';
+import { DropTarget } from 'react-dnd';
 
 import Card, { width as cardWidth, height as cardHeight } from './Card';
 

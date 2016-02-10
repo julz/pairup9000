@@ -5,7 +5,7 @@ import App from './App';
 let state = {
   assignments: {
     "0": ["julz", "zhou"],
-    "1": ["george"],
+    "1": ["george", "alberto"],
     "2": ["georgi"],
     "out": ["will", "svett", "gareth"],
   },
@@ -17,6 +17,9 @@ let state = {
     "1": "Track Two",
     "2": "Track Three",
   },
+  badges: {
+    "1": [ "CI" ],
+  },
   photos: {
     "julz": "https://avatars2.githubusercontent.com/u/354013?v=3&s=72",
     "svett":"https://avatars1.githubusercontent.com/u/703323?s=72" ,
@@ -25,6 +28,7 @@ let state = {
     "gareth": "https://avatars3.githubusercontent.com/u/918129?v=3&s=72",
     "george": "https://avatars1.githubusercontent.com/u/1753414?v=3&s=72",
     "will": "https://avatars3.githubusercontent.com/u/1255755?v=3&s=72",
+    "alberto": "https://avatars1.githubusercontent.com/u/15064?v=3&s=72",
   },
   version: 0,
 }
@@ -52,6 +56,17 @@ const onTrackNameChanged = function(id, name) {
   post()
 }
 
+const onBadgeAssigned = function(track, badge) {
+  Object.keys(state.badges).forEach( k => {
+    state.badges[k] = state.badges[k].filter( a => a != badge )
+  })
+
+  state.badges[track] = (state.badges[track] || []).concat(badge)
+
+  r()
+  post()
+}
+
 function r() {
   let a = {}
   Object.keys(state.assignments).forEach( track => {
@@ -64,9 +79,11 @@ function r() {
         tracks={state.tracks}
         trackNames={state.trackNames}
         assignments={a}
+        badges={state.badges}
         onCardDropped={onDrop}
         onCardHovered={x => x}
         onTrackNameChanged={onTrackNameChanged}
+        onBadgeAssigned={onBadgeAssigned}
       />), document.getElementById('root'));
 }
 

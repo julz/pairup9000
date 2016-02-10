@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DragDropContext, DragSource } from 'react-dnd';
+import { DragSource } from 'react-dnd';
 
 import Radium from 'radium'
 

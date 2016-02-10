@@ -57,7 +57,7 @@ describe("Pair", function () {
     expect(hoverCalledWith).toEqual("julz")
   })
 
-  fit("draws an extra drop target when hovered over", function() {
+  it("draws an extra drop target when hovered over", function() {
     const backend = renderedPair.getManager().getBackend()
     const firstCard = findByType(Card)[0]
 

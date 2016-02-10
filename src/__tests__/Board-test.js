@@ -43,6 +43,7 @@ describe("Board", function () {
   describe("with some tracks", function() {
     const tracks = [ "track1", "track2", "track3" ]
     const trackNames = { "track1": "abc", "track2": "def", "track3": "ghj" }
+    const badges = { "track1": [ "badge1", "badge2" ], "track3": [ "badge3" ] }
 
     beforeEach(function() {
       const WrappedBoard = wrapInTestDNDContext(Board)
@@ -50,6 +51,7 @@ describe("Board", function () {
         <WrappedBoard
           tracks={tracks}
           trackNames={trackNames}
+          badges={badges}
           assignments={assignments}
           onCardDropped={onCardDropped}
           onCardHovered={onCardHovered}
@@ -67,6 +69,10 @@ describe("Board", function () {
 
     it("gives each row the correct track name", function() {
       expect(findByType(Row).map(r => r.props.trackName)).toEqual(["abc", "def", "ghj"])
+    })
+
+    it("gives each row the correct badges", function() {
+      expect(findByType(Row).map(r => r.props.badges)).toEqual([["badge1", "badge2"], undefined, ["badge3"]])
     })
 
     it("gives each row the correct set of pairs", function() {

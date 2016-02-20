@@ -26,6 +26,7 @@ const leftHeaderStyle = {
   textAlign: "center",
   width: 200,
   color: "white",
+  display: "none",
 }
 
 const rightHeaderStyle = {
@@ -35,6 +36,7 @@ const rightHeaderStyle = {
   top: 0,
   width: 400,
   color: "white",
+  display: "none",
 }
 
 const outStyle = {
@@ -76,8 +78,8 @@ export default class Board extends Component {
       <div>
         <div style={headerStyle}>
           <h2>
-            <img src="http://www.publicdomainpictures.net/pictures/80000/nahled/a-pair-of-pears.jpg" style={{position: "absolute", left: -80, top: -280}} />
-            <span style={{position: "relative", left: 190}}>Pair Up 9000!</span>
+            <img src="http://www.publicdomainpictures.net/pictures/80000/nahled/a-pair-of-pears.jpg" style={{position: "absolute", left: 60, top: -20, width: 200}} />
+            <span style={{position: "relative", visibility: "hidden", left: -25}}>Pair Up</span>
           </h2>
         </div>
         <div style={mainStyle}>
@@ -102,6 +104,7 @@ export default class Board extends Component {
               onCardHovered={ (card) => this.props.onCardHovered(card, "out") }
             />
           </div>
+          <div className="fa fa-random"><span style={{cursor: "pointer"}} onClick={ this.props.randomize }>&nbsp;Randomize</span> <span style={{color: "gray"}}>(Double-Click a Card to Lock)</span></div>
         </div>
       </div>
     );

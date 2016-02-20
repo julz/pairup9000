@@ -35,6 +35,7 @@ const inputStyle = {
   border: 0,
   paddingLeft: 4,
   background: "none",
+  fontFamily: "Permanent Marker",
 }
 
 class Row extends Component {

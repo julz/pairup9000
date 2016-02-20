@@ -19,6 +19,10 @@ const styles = {
     textAlign: "center",
     transform: "rotate(-0.5deg)",
   },
+  locked: {
+    background: "#fed",
+    border: "1px solid orange",
+  },
   dragging: {
     opacity: 0,
   }
@@ -45,9 +49,10 @@ const photoStyle = {
 export class Card extends Component {
   render() {
     return this.props.connectDragSource(
-      <div style={[
+      <div onDoubleClick={ this.props.onToggleLock } style={[
         styles.base,
         this.props.isDragging && styles.dragging,
+        this.props.locked && styles.locked,
         { left: this.props.x, top: this.props.y }
       ]}>
       <div style={[

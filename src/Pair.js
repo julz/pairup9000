@@ -29,6 +29,8 @@ export class Pair extends Component {
         key={m.name}
         name={m.name}
         photo={m.photo}
+        locked={m.locked}
+        onToggleLock={m.onToggleLock}
       ></Card>
     ))
 

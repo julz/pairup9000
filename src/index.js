@@ -30,11 +30,22 @@ let state = {
     "will": "https://avatars3.githubusercontent.com/u/1255755?v=3&s=72",
     "alberto": "https://avatars1.githubusercontent.com/u/15064?v=3&s=72",
   },
+  locked: { "julz": true },
   version: 0,
 }
 
 
 const onDrop = function(card, track) {
+  assign(card, track)
+
+  // re-render
+  r()
+
+  // post back
+  post()
+}
+
+const assign = function(card, track) {
   // remove existing
   Object.keys(state.assignments).forEach( k => {
     state.assignments[k] = state.assignments[k].filter( a => a != card )
@@ -42,12 +53,6 @@ const onDrop = function(card, track) {
 
   // add back
   state.assignments[track] = (state.assignments[track] || []).concat(card)
-
-  // re-render
-  r()
-
-  // post back
-  post()
 }
 
 const onTrackNameChanged = function(id, name) {
@@ -67,11 +72,37 @@ const onBadgeAssigned = function(track, badge) {
   post()
 }
 
+const onToggleLock = function(card) {
+  state.locked[card] = !state.locked[card]
+  r()
+  post()
+}
+
+const randomize = function() {
+  state.tracks.forEach(track => {
+    (state.assignments[track] || []).filter(card => !state.locked[card]).forEach(card => assign(card, "available"))
+  })
+
+  while(state.assignments["available"].length > 0) {
+    let trackWithLowestAssigned = state.tracks[0]
+    state.tracks.forEach(track => {
+      if(state.trackNames[track]) {
+        if((state.assignments[track] || []).length < (state.assignments[trackWithLowestAssigned] || []).length) {
+          trackWithLowestAssigned = track
+        }
+      }
+    })
+
+    const randomChoice = Math.floor(Math.random() * state.assignments["available"].length)
+    assign(state.assignments["available"][randomChoice], trackWithLowestAssigned)
+  }
+}
+
 function r() {
   let a = {}
   Object.keys(state.assignments).forEach( track => {
     a[track] = state.assignments[track].map( card => {
-      return { name: card, photo: state.photos[card] }
+      return { name: card, photo: state.photos[card], locked: state.locked[card], onToggleLock: () => onToggleLock(card) }
     })
   })
 
@@ -84,6 +115,7 @@ function r() {
         onCardHovered={x => x}
         onTrackNameChanged={onTrackNameChanged}
         onBadgeAssigned={onBadgeAssigned}
+        randomize={randomize}
       />), document.getElementById('root'));
 }
 

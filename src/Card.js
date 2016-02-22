@@ -49,7 +49,7 @@ const photoStyle = {
 export class Card extends Component {
   render() {
     return this.props.connectDragSource(
-      <div onDoubleClick={ this.props.onToggleLock } style={[
+      <div onDoubleClick={ this.props.onDblClick } style={[
         styles.base,
         this.props.isDragging && styles.dragging,
         this.props.locked && styles.locked,

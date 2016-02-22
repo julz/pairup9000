@@ -69,6 +69,7 @@ export default class Board extends Component {
          onCardHovered={this.props.onCardHovered}
          onTrackNameChanged={this.props.onTrackNameChanged}
          onBadgeAssigned={this.props.onBadgeAssigned}
+         onToggleLock={this.props.onToggleLock}
          alternate={ i % 2 != 0 }
        >
       </Row>
@@ -95,6 +96,7 @@ export default class Board extends Component {
               members={ this.props.assignments["unassigned"] || [] }
               onCardDropped={ (card) => this.props.onCardDropped(card, "unassigned") }
               onCardHovered={ (card) => this.props.onCardHovered(card, "unassigned") }
+              onToggleLock={ x => x }
             />
             <br />
             Out
@@ -102,6 +104,7 @@ export default class Board extends Component {
               members={ this.props.assignments["out"] || [] }
               onCardDropped={ (card) => this.props.onCardDropped(card, "out") }
               onCardHovered={ (card) => this.props.onCardHovered(card, "out") }
+              onToggleLock={ x => x }
             />
           </div>
           <div className="fa fa-random"><span style={{cursor: "pointer"}} onClick={ this.props.randomize }>&nbsp;Randomize</span> <span style={{color: "gray"}}>(Double-Click a Card to Lock)</span></div>

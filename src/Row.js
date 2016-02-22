@@ -54,6 +54,7 @@ class Row extends Component {
             members={this.props.pair}
             onCardDropped={ (card, pos) => this.props.onCardDropped( card, this.props.track, pos ) }
             onCardHovered={ (card, pos) => this.props.onCardHovered( card, this.props.track, pos ) }
+            onToggleLock={ (card) => this.props.onToggleLock(card) }
           />
           {badges}
         </div>

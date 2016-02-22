@@ -30,7 +30,7 @@ export class Pair extends Component {
         name={m.name}
         photo={m.photo}
         locked={m.locked}
-        onToggleLock={m.onToggleLock}
+        onDblClick={() => this.props.onToggleLock(m.name)}
       ></Card>
     ))
 

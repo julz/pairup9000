@@ -6,7 +6,8 @@ const initialState = Immutable.fromJS({
     "0": ["julz", "zhou"],
     "1": ["george", "alberto"],
     "2": ["georgi"],
-    "out": ["will", "svett", "gareth"],
+    "out": ["will" ],
+    "unassigned": ["ed", "petar"],
   },
   tracks: [
     "0", "1", "2", "3", "4",
@@ -28,17 +29,27 @@ const initialState = Immutable.fromJS({
     "george": "https://avatars1.githubusercontent.com/u/1753414?v=3&s=72",
     "will": "https://avatars3.githubusercontent.com/u/1255755?v=3&s=72",
     "alberto": "https://avatars1.githubusercontent.com/u/15064?v=3&s=72",
+    "ed": "https://avatars3.githubusercontent.com/u/6475144?v=3&s=72",
+    "petar": "http://www.publicdomainpictures.net/pictures/80000/nahled/a-pair-of-pears.jpg",
   },
   locked: { "julz": true },
   version: 0,
 })
 
 function assignments(state = Immutable.Map({}), action) {
-  if (action.type != "DROP_CARD") {
-    return state
+  if (action.type == "ADD_CARD") {
+    return drop(state, action.name, "unassigned")
   }
 
-  return drop(state, action.card, action.target)
+  if (action.type == "REMOVE_CARD") {
+    return drop(state, action.name, "removed").set("removed", Immutable.List())
+  }
+
+  if (action.type == "DROP_CARD") {
+    return drop(state, action.card, action.target)
+  }
+
+  return state
 }
 
 function badges(state = Immutable.Map(), action) {
@@ -71,6 +82,10 @@ function trackNames(state = Immutable.Map(), action) {
 }
 
 function photos(state = Immutable.Map(), action) {
+  if (action.type == "ADD_CARD") {
+    return state.set(action.name, action.photo)
+  }
+
   return state
 }
 

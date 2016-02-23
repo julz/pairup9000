@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
 import Board from './Board';
+import Editor from './Editor';
+
 import reduce from './reducers/';
-import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, toggleLock } from './actions/';
+import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, toggleLock, addCard, removeCard } from './actions/';
+import { List } from 'immutable';
 
 const store = createStore(reduce, applyMiddleware(thunkMiddleware))
 
@@ -47,13 +51,29 @@ const ConnectedBoard = connect(
   }
 )(Board)
 
+const ConnectedEditor = connect(
+  state => {
+    return {
+      photos: state.get("photos").toJS(),
+      cards: state.get("assignments").reduce((r, cards) => r.concat(cards), List()).sort().toJS(),
+    }
+  },
+  dispatch => {
+    return {
+      onAdd: (name, photo) => dispatch(andSave(addCard(name, photo))),
+      onRemove: (name) => dispatch(andSave(removeCard(name))),
+    }
+  }
+)(Editor)
+
 export class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedBoard
-          {...this.props}
-        />
+        <Router history={browserHistory}>
+           <Route path="/" component={ConnectedBoard}></Route>
+           <Route path="/edit" component={ConnectedEditor}></Route>
+        </Router>
       </Provider>
     );
   }

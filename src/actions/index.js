@@ -15,6 +15,21 @@ export function dropCard(card, track) {
   }
 }
 
+export function addCard(name, photo) {
+  return {
+    type: "ADD_CARD",
+    name: name,
+    photo: photo,
+  }
+}
+
+export function removeCard(name, photo) {
+  return {
+    type: "REMOVE_CARD",
+    name: name,
+  }
+}
+
 export function assignBadge(badge, track) {
   return {
     type: "DROP_BADGE",

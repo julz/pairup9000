@@ -7,6 +7,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/edit', function (req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.get('/static/bundle.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist', 'bundle.js'));
 });

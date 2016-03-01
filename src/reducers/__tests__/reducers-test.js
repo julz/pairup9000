@@ -56,6 +56,20 @@ describe("assignments", function() {
       expect(result.get("assignments").get("other-row")).not.toContain("julz")
       expect(result.get("assignments").get("one-more")).not.toContain("julz")
     })
+
+    it("does not create duplicate cards when re-dropped where it was", function() {
+      const result = reduce(Immutable.fromJS({
+        assignments: {
+           "other-row": ["svett", "julz"],
+           "some-row": ["zyu", "gareth"],
+           "one-more": ["julz", "popeye"],
+        }}),
+        {type: "DROP_CARD", card: "julz", target: "one-more"}
+      )
+
+      expect(result.get("assignments").get("one-more")).toContain("popeye", "julz")
+      expect(result.get("assignments").get("one-more").count()).toEqual(2)
+    })
   })
 })
 

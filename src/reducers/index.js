@@ -61,14 +61,10 @@ function badges(state = Immutable.Map(), action) {
 }
 
 function drop(state = Immutable.Map(), item, target) {
-  const ensureRowExists = Immutable.Map().set(target, Immutable.List())
-  return ensureRowExists.merge(state).map( (v, k) => {
-    if (k == target) {
-      return v.concat(item)
-    } else {
-      return v.filter( i => i != item )
-    }
-  })
+  const ensureRowExists = Immutable.Map().set(target, Immutable.List()).merge(state)
+  const removeExisting = (v) => v.filter( i => i != item )
+
+  return ensureRowExists.map(removeExisting).updateIn([target], l => l.concat(item))
 }
 
 function tracks(state = Immutable.List(), action) {

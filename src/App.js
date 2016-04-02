@@ -11,7 +11,7 @@ import Board from './Board';
 import Editor from './Editor';
 
 import reduce from './reducers/';
-import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, toggleLock, addCard, removeCard } from './actions/';
+import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, randomizePlane,toggleLock, addCard, removeCard } from './actions/';
 import { List } from 'immutable';
 
 const store = createStore(reduce, applyMiddleware(thunkMiddleware))
@@ -46,6 +46,7 @@ const ConnectedBoard = connect(
       onTrackNameChanged: (track, name) => dispatch(andSave(updateTrackName(track, name))),
       onToggleLock: (card) => dispatch(andSave(toggleLock(card))),
       randomize: () => dispatch(andSave(randomize())),
+      randomizePlane: () => dispatch(andSave(randomizePlane())),
       onCardHovered: x => x,
     }
   }

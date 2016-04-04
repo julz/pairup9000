@@ -34,6 +34,7 @@ const labelStyle = {
   bottom: 5,
   left: 0,
   textAlign: "center",
+  fontSize: "smaller",
   color: "blue",
 }
 

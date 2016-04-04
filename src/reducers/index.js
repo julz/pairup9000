@@ -17,9 +17,6 @@ const initialState = Immutable.fromJS({
     "1": "Track Two",
     "2": "Track Three",
   },
-  badges: {
-    "1": [ "CI" ],
-  },
   photos: {
     "julz": "https://avatars2.githubusercontent.com/u/354013?v=3&s=72",
     "svett":"https://avatars1.githubusercontent.com/u/703323?s=72" ,

@@ -1,4 +1,7 @@
 # Pair Up 9000
+To install the dependencies:
+
+`npm install`
 
 To run in dev mode:
 

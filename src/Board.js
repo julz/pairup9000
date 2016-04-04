@@ -107,7 +107,8 @@ export default class Board extends Component {
               onToggleLock={ x => x }
             />
           </div>
-          <div className="fa fa-random"><span style={{cursor: "pointer"}} onClick={ this.props.randomize }>&nbsp;Randomize</span> <span style={{color: "gray"}}>(Double-Click a Card to Lock)</span></div>
+          <p><div className="fa fa-random"><span style={{cursor: "pointer"}} onClick={ this.props.randomize }>&nbsp;Randomize</span> </div></p>
+          <p><div className="fa fa-random"><span style={{cursor: "pointer"}} onClick={ this.props.randomizePlane }>&nbsp;Fly</span> <span style={{color: "gray"}}>(Double-Click a Card to Lock)</span> </div></p>
         </div>
       </div>
     );

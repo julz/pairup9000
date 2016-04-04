@@ -93,38 +93,16 @@ export function randomize() {
 export function randomizePlane() {
   return (dispatch, getState) => {
     const state = getState()
+    const assignments = state.get("assignments")
     const tracks = state.get("tracks")
-    const badges = state.get("badges")
-    const trackNames = state.get("trackNames")
 
-    // filtering the pm tracks
-    const nonPMTracks = tracks.filter(function (track) {
-      const trackName = trackNames.get(track)
-      if(trackName) {
-        return !trackNames.get(track).match(/\bpm\b/i) && !trackNames.get(track).match(/\bpming\b/i)
-      }
-      return false
-    })
-
-    // focusing on the ci tracks
-    var eligibleTracks = nonPMTracks.filter(function (track) {
-      const trackName = trackNames.get(track)
-      if(trackName) {
-        return trackNames.get(track).match(/\bci\b/i)
-      }
-      return false
-    })
-
-    if (eligibleTracks.count() === 0) {
-      eligibleTracks = nonPMTracks
-    }
-
-    const i  = Math.random() * eligibleTracks.count()
+    const tracksWithPeople = tracks.filter( track => assignments.get(track) && assignments.get(track).count() > 0 )
+    const i  = Math.random() * tracksWithPeople.count()
 
     dispatch({
       type: "DROP_BADGE",
-      target: eligibleTracks.get(i),
-      badge: badges.get(i),
+      target: tracksWithPeople.get(i),
+      badge: "CI",
     })
   }
 }

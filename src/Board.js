@@ -106,6 +106,13 @@ export default class Board extends Component {
               onCardHovered={ (card) => this.props.onCardHovered(card, "out") }
               onToggleLock={ x => x }
             />
+            PMing
+            <Pair
+              members={ this.props.assignments["pm"] || [] }
+              onCardDropped={ (card) => this.props.onCardDropped(card, "pm") }
+              onCardHovered={ (card) => this.props.onCardHovered(card, "pm") }
+              onToggleLock={ x => x }
+            />
           </div>
           <div className="fa fa-random">&nbsp;Randomize: <span style={{cursor: "pointer", textDecoration: "underline"}} onClick={ this.props.randomizePlane }>CI Pair</span>&nbsp;|&nbsp;<span style={{cursor: "pointer", textDecoration:"underline"}} onClick={ this.props.randomize }>All Pairs</span> <span style={{color: "gray"}}>(Double-Click a Pair to Lock)</span></div>
         </div>

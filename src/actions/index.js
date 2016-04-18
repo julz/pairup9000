@@ -98,12 +98,9 @@ export function randomizePlane() {
 
     const tracksWithPeople = tracks.filter( track => assignments.get(track) && assignments.get(track).count() > 0 )
     const i  = Math.random() * tracksWithPeople.count()
+    const trackNumber = tracksWithPeople.get(i)
 
-    dispatch({
-      type: "DROP_BADGE",
-      target: tracksWithPeople.get(i),
-      badge: "CI",
-    })
+    dispatch(assignBadge('gardenci', trackNumber))
   }
 }
 

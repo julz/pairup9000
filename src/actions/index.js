@@ -15,11 +15,12 @@ export function dropCard(card, track) {
   }
 }
 
-export function addCard(name, photo) {
+export function addCard(name, photo, handle) {
   return {
     type: "ADD_CARD",
     name: name,
     photo: photo,
+    slack: handle,
   }
 }
 

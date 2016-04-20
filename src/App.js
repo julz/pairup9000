@@ -11,7 +11,7 @@ import Board from './Board';
 import Editor from './Editor';
 
 import reduce from './reducers/';
-import { load, andSave, dropCard, assignBadge, assignBadgeAsync, updateTrackName, randomize, randomizePlane,toggleLock, addCard, removeCard } from './actions/';
+import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, randomizePlane,toggleLock, addCard, removeCard } from './actions/';
 import { List } from 'immutable';
 import { updateGroup } from './slack';
 
@@ -92,11 +92,12 @@ const ConnectedEditor = connect(
     return {
       photos: state.get("photos").toJS(),
       cards: state.get("assignments").reduce((r, cards) => r.concat(cards), List()).sort().toJS(),
+      slack: state.get("slack").toJS(),
     }
   },
   dispatch => {
     return {
-      onAdd: (name, photo) => dispatch(andSave(addCard(name, photo))),
+      onAdd: (name, photo, handle) => dispatch(andSave(addCard(name, photo, handle))),
       onRemove: (name) => dispatch(andSave(removeCard(name))),
     }
   }

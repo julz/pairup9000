@@ -37,7 +37,7 @@ export const defaultState = {
     "georgi": "gsabev",
     "gareth": "gsmith",
     "george": "glestaris",
-    "old will": "willpragnel",
+    "old will": "willpragnell",
     "alberto": "aleal",
     "ed": "eking",
     "petar": "pppepito86",

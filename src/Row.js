@@ -7,13 +7,15 @@ import Badge from './Badge';
 
 const rowStyle = {
   base: {
-    borderBottom: "1px solid black",
+    border: "1px solid #247BA0",
+    marginBottom: 12,
     height: 130,
     width: "100%",
     position: "relative",
+    background: "#00AEFF",
+    borderRadius: 8,
   },
   alternate: {
-    background: "#eeeeee",
   },
 }
 
@@ -31,11 +33,12 @@ const rightStyle = {
 const inputStyle = {
   height: 80,
   width: "100%",
-  fontSize: "x-large",
   border: 0,
   paddingLeft: 4,
   background: "none",
   fontFamily: "Permanent Marker",
+  color: "#fff",
+  fontSize: "xx-large",
 }
 
 class Row extends Component {

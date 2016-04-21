@@ -6,27 +6,28 @@ import Pair from './Pair';
 const width = 750
 
 const boardStyle = {
-  border: "1px solid rgba(0,0,0,0.8)",
-  //borderRadius: 9,
-  boxShadow: "0px 0px 6px rgba(0,0,0,0.3)",
-  background: "white",
+  borderRadius: 8,
 }
 
 const headerStyle = {
   textAlign: "center",
-  width: width,
+  padding: 0,
+  margin: 0,
+  height: 100,
 }
 
 const mainStyle = {
   position: "relative",
   width: width,
+  padding: 30,
 }
 
 const leftHeaderStyle = {
   textAlign: "center",
   width: 200,
   color: "white",
-  display: "none",
+  position: "absolute",
+  top: 0,
 }
 
 const rightHeaderStyle = {
@@ -36,16 +37,22 @@ const rightHeaderStyle = {
   top: 0,
   width: 400,
   color: "white",
-  display: "none",
 }
 
-const outStyle = {
-  position: "absolute",
-  left: width + 20,
-  top: 10,
-  width: 250,
-  height: 250,
+const sidebarHeaderStyle = {
+  borderBottom: "1px solid white",
+  color: "white",
+}
+
+const sidebarStyle = {
+  position: "fixed",
+  paddingTop: 140,
+  right: 0,
+  top: 0,
+  width: "35%",
+  height: "100%",
   textAlign: "center",
+  background: "#FFA73D",
 }
 
 const parkingLotItemStyle = {
@@ -53,6 +60,12 @@ const parkingLotItemStyle = {
 }
 
 const parkingLotInputStyle = {
+  width: "100%",
+}
+
+const randomizeStyle = {
+  color: "white",
+  textAlign: "center",
   width: "100%",
 }
 
@@ -76,12 +89,8 @@ export default class Board extends Component {
     ))
 
     return (
-      <div>
+      <div style={{padding: 0, margin: 0}}>
         <div style={headerStyle}>
-          <h2>
-            <img src="http://www.publicdomainpictures.net/pictures/80000/nahled/a-pair-of-pears.jpg" style={{position: "absolute", left: 60, top: -20, width: 200}} />
-            <span style={{position: "relative", visibility: "hidden", left: -25}}>Pair Up</span>
-          </h2>
         </div>
         <div style={mainStyle}>
           <div style={leftHeaderStyle}>Pairs</div>
@@ -89,9 +98,9 @@ export default class Board extends Component {
           <div style={boardStyle}>
             {rows}
           </div>
-          <div style={outStyle}>
+          <div style={sidebarStyle}>
             <br />
-            Unassigned
+            <span style={sidebarHeaderStyle}>Unassigned</span>
             <Pair
               members={ this.props.assignments["unassigned"] || [] }
               onCardDropped={ (card) => this.props.onCardDropped(card, "unassigned") }
@@ -99,14 +108,15 @@ export default class Board extends Component {
               onToggleLock={ x => x }
             />
             <br />
-            Out
+            <span style={sidebarHeaderStyle}>Out</span>
             <Pair
               members={ this.props.assignments["out"] || [] }
               onCardDropped={ (card) => this.props.onCardDropped(card, "out") }
               onCardHovered={ (card) => this.props.onCardHovered(card, "out") }
               onToggleLock={ x => x }
             />
-            PMing
+            <br />
+            <span style={sidebarHeaderStyle}>PMing</span>
             <Pair
               members={ this.props.assignments["pm"] || [] }
               onCardDropped={ (card) => this.props.onCardDropped(card, "pm") }
@@ -114,7 +124,7 @@ export default class Board extends Component {
               onToggleLock={ x => x }
             />
           </div>
-          <div className="fa fa-random">&nbsp;Randomize: <span style={{cursor: "pointer", textDecoration: "underline"}} onClick={ this.props.randomizePlane }>CI Pair</span>&nbsp;|&nbsp;<span style={{cursor: "pointer", textDecoration:"underline"}} onClick={ this.props.randomize }>All Pairs</span> <span style={{color: "gray"}}>(Double-Click a Pair to Lock)</span></div>
+          <div style={randomizeStyle} className="fa fa-random">&nbsp;Randomize: <span style={{cursor: "pointer", textDecoration: "underline"}} onClick={ this.props.randomizePlane }>CI Pair</span>&nbsp;|&nbsp;<span style={{cursor: "pointer", textDecoration:"underline"}} onClick={ this.props.randomize }>All Pairs</span> <span style={{color: "white"}}>(Double-Click a Pair to Lock)</span></div>
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ const styles = {
   base: {
     width: width,
     height: height,
-    border: "1px solid rgba(0,0,0,0.9)",
+    border: "1px solid #00AEFF",
     margin: 4,
     boxShadow: "0px 2px 2px rgba(0,0,0,0.2)",
     background: "white",
@@ -18,10 +18,12 @@ const styles = {
     transition: "all 0.4s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0.1s",
     textAlign: "center",
     transform: "rotate(-0.5deg)",
+    borderRadius: 8,
+    cursor: "move",
   },
   locked: {
-    background: "#fed",
-    border: "1px solid orange",
+    background: "#FFF",
+    border: "2px solid #FF8B00",
   },
   dragging: {
     opacity: 0,
@@ -35,7 +37,7 @@ const labelStyle = {
   left: 0,
   textAlign: "center",
   fontSize: "smaller",
-  color: "blue",
+  color: "#007AB2",
 }
 
 const photoStyle = {

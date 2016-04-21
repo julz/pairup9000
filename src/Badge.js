@@ -14,7 +14,7 @@ const badgeStyle = {
   color: "#fff",
   textShadow: "0px 0px 2px black",
   textAlign: "center",
-  background: "radial-gradient(ellipse at center, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%)",
+  background: "#8EFF19",
   fontSize: "x-large",
 }
 

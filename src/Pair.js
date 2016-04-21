@@ -8,16 +8,17 @@ const style = {
   width: "100%",
   height: 120,
   position: "relative",
-  borderBottom: "1px solid #999",
   margin: 4,
+  background: "rgba(255, 255, 255, 0.1)",
 }
 
 const hoverHintStyle = {
   width: cardWidth,
   height: cardHeight,
   position: "absolute",
-  background: "#ddd",
-  border: "1px solid #ccc",
+  background: "#4E718C",
+  border: "1px solid #2E9C9C",
+  borderRadius: 8,
 }
 
 export class Pair extends Component {

@@ -48,7 +48,6 @@ describe("Editor", function() {
   it("sends the entered name, slack handle and photo when the Add Card button is clicked", function() {
     const rows = scryRenderedDOMComponentsWithTag(renderedEditor, "tr")
     const lastRow = rows[rows.length-1]
-    console.log(lastRow)
     lastRow.getElementsByTagName("input")[0].value = "foo"
     lastRow.getElementsByTagName("input")[1].value = "@foo"
     lastRow.getElementsByTagName("input")[2].value = "url"

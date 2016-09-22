@@ -3,11 +3,12 @@
 
 export const defaultState = {
   assignments: {
-    "0": ["julz", "zhou"],
-    "1": ["george", "alberto"],
-    "2": ["georgi"],
-    "out": ["old will" ],
-    "unassigned": ["ed", "petar", "cool will"],
+    "0": ["georgi", "cool will"],
+    "1": ["ed", "petar"],
+    "2": [],
+    "out": [],
+    "pming": ["julz"]
+    "unassigned": [],
   },
   tracks: [
     "0", "1", "2", "3", "4",
@@ -31,6 +32,6 @@ export const defaultState = {
     "cool will": "https://avatars2.githubusercontent.com/u/1611510?v=3&s=72",
   },
   badges: { "1": [ "CI" ] },
-  locked: { "julz": true },
+  locked: {},
   version: 0,
 }

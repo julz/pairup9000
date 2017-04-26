@@ -3,11 +3,14 @@
 
 export const defaultState = {
   assignments: {
-    "0": ["julz", "zhou"],
-    "1": ["george", "alberto"],
-    "2": ["georgi"],
-    "out": ["old will" ],
-    "unassigned": ["ed", "petar", "cool will"],
+    "0": [],
+    "1": [],
+    "2": [],
+    "out": [],
+    "pm": ["julz"],
+    "unassigned": [
+      "georgi", "petar", "cool will", "ed", "k-dawg", "craig",
+    ],
   },
   tracks: [
     "0", "1", "2", "3", "4",
@@ -19,16 +22,12 @@ export const defaultState = {
   },
   photos: {
     "julz": "https://avatars2.githubusercontent.com/u/354013?v=3&s=72",
-    "svett":"https://avatars1.githubusercontent.com/u/703323?s=72" ,
-    "zhou": "https://avatars3.githubusercontent.com/u/4571626?v=3&s=72",
     "georgi": "https://avatars1.githubusercontent.com/u/9860469?v=3&s=72",
-    "gareth": "https://avatars3.githubusercontent.com/u/918129?v=3&s=72",
-    "george": "https://avatars1.githubusercontent.com/u/1753414?v=3&s=72",
-    "old will": "https://avatars3.githubusercontent.com/u/1255755?v=3&s=72",
-    "alberto": "https://avatars1.githubusercontent.com/u/15064?v=3&s=72",
-    "ed": "https://avatars3.githubusercontent.com/u/6475144?v=3&s=72",
     "petar": "http://danube.panda.org/wwf/design/i/ico/i_1.png",
     "cool will": "https://avatars2.githubusercontent.com/u/1611510?v=3&s=72",
+    "ed": "https://avatars3.githubusercontent.com/u/6475144?v=3&s=72",
+    "k-dawg": "https://avatars1.githubusercontent.com/u/1573630?v=3&s=72",
+    "craig": "https://avatars2.githubusercontent.com/u/4772216?v=3&s=72",
   },
   badges: { "1": [ "CI" ] },
   locked: { "julz": true },

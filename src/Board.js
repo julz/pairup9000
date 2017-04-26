@@ -40,19 +40,21 @@ const rightHeaderStyle = {
 }
 
 const sidebarHeaderStyle = {
-  borderBottom: "1px solid white",
   color: "white",
 }
 
 const sidebarStyle = {
   position: "fixed",
   paddingTop: 140,
+  paddingRight: 14,
   right: 0,
   top: 0,
   width: "35%",
   height: "100%",
   textAlign: "center",
-  background: "#FFA73D",
+  background: "#2c3e50",
+  borderLeft: "8px solid #2c3e50",
+  boxShadow: "-2px 1px 1px 1px #ecf0f1",
 }
 
 const parkingLotItemStyle = {
@@ -124,7 +126,7 @@ export default class Board extends Component {
               onToggleLock={ x => x }
             />
           </div>
-          <div style={randomizeStyle} className="fa fa-random">&nbsp;Randomize: <span style={{cursor: "pointer", textDecoration: "underline"}} onClick={ this.props.randomizePlane }>CI Pair</span>&nbsp;|&nbsp;<span style={{cursor: "pointer", textDecoration:"underline"}} onClick={ this.props.randomize }>All Pairs</span> <span style={{color: "white"}}>(Double-Click a Pair to Lock)</span></div>
+          <div style={randomizeStyle} className="fa"><span style={{color: "#f1c40f", paddingRight: "0.1em"}} className="fa fa-random">&nbsp;Randomize</span>:&nbsp; <span style={{cursor: "pointer", textDecoration: "underline"}} onClick={ this.props.randomizePlane }>CI Pair</span>&nbsp;/&nbsp;<span style={{cursor: "pointer", textDecoration:"underline"}} onClick={ this.props.randomize }>All Pairs</span> <span style={{color: "white"}}>(Double-Click a Pair to Lock)</span></div>
         </div>
       </div>
     );

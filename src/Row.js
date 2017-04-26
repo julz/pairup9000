@@ -7,13 +7,11 @@ import Badge from './Badge';
 
 const rowStyle = {
   base: {
-    border: "1px solid #247BA0",
     marginBottom: 12,
     height: 130,
     width: "100%",
     position: "relative",
-    background: "#00AEFF",
-    borderRadius: 8,
+    borderRadius: 2
   },
   alternate: {
   },
@@ -39,6 +37,7 @@ const inputStyle = {
   fontFamily: "Permanent Marker",
   color: "#fff",
   fontSize: "xx-large",
+  borderBottom: "1px solid #27ae60",
 }
 
 class Row extends Component {

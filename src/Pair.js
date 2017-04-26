@@ -9,16 +9,15 @@ const style = {
   height: 120,
   position: "relative",
   margin: 4,
-  background: "rgba(255, 255, 255, 0.1)",
+  background: "rgba(255, 255, 255, 0.08)",
+  border: "1px dotted #ecf0f1",
 }
 
 const hoverHintStyle = {
-  width: cardWidth,
-  height: cardHeight,
   position: "absolute",
-  background: "#4E718C",
-  border: "1px solid #2E9C9C",
-  borderRadius: 8,
+  border: "1px dotted #2E9C9C",
+  width: "98%",
+  height: cardHeight,
 }
 
 export class Pair extends Component {

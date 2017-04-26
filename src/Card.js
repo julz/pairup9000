@@ -10,20 +10,21 @@ const styles = {
   base: {
     width: width,
     height: height,
-    border: "1px solid #00AEFF",
+    border: "1px solid #f1c40f",
     margin: 4,
-    boxShadow: "0px 2px 2px rgba(0,0,0,0.2)",
+    boxShadow: "1px 1px 2px 2px rgba(0,0,0,0.6)",
     background: "white",
     position: "absolute",
     transition: "all 0.4s cubic-bezier(0.190, 1.000, 0.220, 1.000) 0.1s",
     textAlign: "center",
     transform: "rotate(-0.5deg)",
-    borderRadius: 8,
+    borderRadius: 2,
     cursor: "move",
   },
   locked: {
-    background: "#FFF",
-    border: "2px solid #FF8B00",
+    border: "1px solid #d35400",
+    borderBottom: "2px solid #d35400",
+    boxShadow: "0px 0px 0px 2px #f1c40f",
   },
   dragging: {
     opacity: 0,
@@ -37,7 +38,7 @@ const labelStyle = {
   left: 0,
   textAlign: "center",
   fontSize: "smaller",
-  color: "#007AB2",
+  color: "#2980b9",
 }
 
 const photoStyle = {

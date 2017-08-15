@@ -13,10 +13,44 @@ import Editor from './Editor';
 import reduce from './reducers/';
 import { load, andSave, dropCard, assignBadge, updateTrackName, randomize, randomizePlane,toggleLock, addCard, removeCard } from './actions/';
 import { List } from 'immutable';
+import { updateGroup } from './slack';
+
 
 const store = createStore(reduce, applyMiddleware(thunkMiddleware))
 
 store.dispatch(load())
+
+function getCiTrack() {
+  const badges = store.getState().get('badges')
+  const tracks = badges.keys()
+
+  for (var track of tracks) {
+    if(badges.get(track).indexOf('gardenci') >= 0) {
+      return track
+    }
+  }
+  return "-1"
+}
+
+let currentCiTrack = getCiTrack()
+
+store.subscribe(() => {
+  const newCiTrack = getCiTrack()
+  if (newCiTrack != currentCiTrack) {
+    currentCiTrack = newCiTrack
+    onCiTrackChanged(newCiTrack)
+  }
+})
+
+function onCiTrackChanged(newCiTrack) {
+    const state = store.getState()
+    const assignments = state.get('assignments')
+    const ciPair = assignments.get(newCiTrack)
+    const ciPairSlackHandles = ciPair.map(name => state.get("slack").get(name))
+    updateGroup('gardenci', ciPairSlackHandles, () => {
+      console.log("slack group 'gardenci' updated to ", ciPairSlackHandles)
+    })
+}
 
 const ConnectedBoard = connect(
   state => {
@@ -26,6 +60,7 @@ const ConnectedBoard = connect(
         return {
           name: name,
           photo: s["photos"][ name ],
+          slack: s["slack"][ name ],
           locked: s["locked"][ name ],
         }
       })
@@ -57,11 +92,12 @@ const ConnectedEditor = connect(
     return {
       photos: state.get("photos").toJS(),
       cards: state.get("assignments").reduce((r, cards) => r.concat(cards), List()).sort().toJS(),
+      slack: state.get("slack").toJS(),
     }
   },
   dispatch => {
     return {
-      onAdd: (name, photo) => dispatch(andSave(addCard(name, photo))),
+      onAdd: (name, photo, handle) => dispatch(andSave(addCard(name, photo, handle))),
       onRemove: (name) => dispatch(andSave(removeCard(name))),
     }
   }

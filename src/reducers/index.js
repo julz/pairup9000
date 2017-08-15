@@ -54,6 +54,13 @@ function photos(state = Immutable.Map(), action) {
   return state
 }
 
+function slack(state = Immutable.Map(), action) {
+  if (action.type == "ADD_CARD") {
+    return state.set(action.name, action.slack)
+  }
+
+  return state
+}
 function locked(state = Immutable.Map(), action) {
   return (action.type == "TOGGLE_LOCK")
     ? state.set(action.card, !state.get(action.card))
@@ -70,6 +77,7 @@ const reduce = combineReducers({
   tracks: tracks,
   trackNames: trackNames,
   photos: photos,
+  slack: slack,
   locked: locked,
   version: version,
 })
